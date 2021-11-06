@@ -9,15 +9,17 @@ import com.esai.dvdlibrary.dto.DVD;
  */
 public interface DVDLibraryDao {
 
-    DVD addDVD(DVD newDVD);
+    DVD addDVD(DVD newDVD) throws ClassDVDDaoException;
     
-    DVD removeDVD();
+    boolean removeDVD(DVD dvdToRemove) throws ClassDVDDaoException;
     
-    DVD editDVD(String title);
+    void editDVD(DVD dvdToEdit, DVD newDVD) throws ClassDVDDaoException;
     
-    ArrayList<DVD> getAllDVDs();
+    ArrayList<DVD> getAllDVDs() throws ClassDVDDaoException;
     
-    DVD getDVDInfo(String title);
+    ArrayList<DVD> getDVDInfoByTitle(String title);
     
-    DVD getDVDInfoByTitle(String title);
+    DVD getDVDInfoByTitleAndReleaseDate(String title, String releaseDate);
+    
+    boolean checkDVDInLibraryToEdit(DVD dvdToEdit);
 }
