@@ -9,6 +9,7 @@ import java.util.*;
  */
 public class DVDLibraryView {
 
+    // handles print messages
     private UserIO io = new UserIOConsoleImpl();
 
     // display menu and read user input selection
@@ -179,6 +180,7 @@ public class DVDLibraryView {
         io.readString("DVD searched for does not exist. Please hit enter to continue");
     }
     
+    // displays error message if not able to load library
     public void displayErrorMessage(String errorMsg){
         io.print("=== ERROR ===");
         io.print(errorMsg);

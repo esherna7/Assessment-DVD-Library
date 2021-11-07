@@ -8,7 +8,7 @@ import com.esai.dvdlibrary.controller.DVDLibraryController;
  */
 public class App {
 
-    
+    // Starts running Controller
     public static void main(String args[]) {
         DVDLibraryController controller = new DVDLibraryController();
         controller.run();

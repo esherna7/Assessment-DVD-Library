@@ -1,11 +1,11 @@
 package com.esai.dvdlibrary.controller;
 
+// imports
 import com.esai.dvdlibrary.dao.ClassDVDDaoException;
 import com.esai.dvdlibrary.dao.DVDLibraryDao;
 import com.esai.dvdlibrary.dao.DVDLibraryDaoFileImpl;
 import com.esai.dvdlibrary.dto.DVD;
 import com.esai.dvdlibrary.ui.DVDLibraryView;
-// wont need userIO soon so delete everything later
 import com.esai.dvdlibrary.ui.UserIO;
 import com.esai.dvdlibrary.ui.UserIOConsoleImpl;
 import java.util.*;
@@ -16,38 +16,50 @@ import java.util.*;
  */
 public class DVDLibraryController {
 
+    // handles ui and user interaction 
     private DVDLibraryView view = new DVDLibraryView();
+    // handles data access and functions
     private DVDLibraryDao doa = new DVDLibraryDaoFileImpl();
+    // handles printing messages
     private UserIO io = new UserIOConsoleImpl();
 
+    // runs main menu interaction between view and doa 
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
 
+        
         try {
             while (keepGoing) {
                 menuSelection = getMenuSelection();
 
                 // do case based on selected option
                 switch (menuSelection) {
+                    // adds dvd to library
                     case 1:
                         createDVD();
                         break;
+                    // removes dvd from library
                     case 2:
                         removeDVD();
                         break;
+                    // edits dvd in library
                     case 3:
                         editDVD();
                         break;
+                    // lists all dvds in library
                     case 4:
                         listDVDLibrary();
                         break;
+                    // search for dvd by title in library
                     case 5:
                         searchDVDByTitle();
                         break;
+                    // search for dvd by title and release date in library
                     case 6:
                         searchDVDByTitleAndReleaseDate();
                         break;
+                    // exit
                     case 7:
                         keepGoing = false;
                         break;
@@ -55,10 +67,12 @@ public class DVDLibraryController {
                         io.print("Unknown Command");
                 }
             }
-        } catch (ClassDVDDaoException e) {
+        }   // catches error loading library 
+        catch (ClassDVDDaoException e) {
             view.displayErrorMessage(e.getMessage());
         }
-
+        
+        // user exited
         io.print("Goodbye");
     }
 

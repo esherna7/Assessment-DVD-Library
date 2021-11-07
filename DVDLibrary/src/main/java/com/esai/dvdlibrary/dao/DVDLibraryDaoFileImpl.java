@@ -10,16 +10,23 @@ import java.io.*;
  */
 public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
 
+    // holds file
     public static final String DVD_LIBRARY = "dvdLibrary.txt";
-    public static final String DELIMITER = "::";
+    public static final String DELIMITER = "::"; // Delimiter
 
+    // Arraylist holds dvds in library
     private ArrayList<DVD> dvdLibrary = new ArrayList<DVD>();
 
     // add newly created DVD to dvdLibrary
     @Override
     public DVD addDVD(DVD newDVD) throws ClassDVDDaoException {
+        // reset dvdlibrary
+        dvdLibrary = new ArrayList<DVD>();
+        // load dvds from file into arraylist
         loadDVD();
+        // add new dvd to arraylist library
         dvdLibrary.add(newDVD);
+        // load new library to file
         writeDVD();
         return newDVD;
     }
@@ -28,6 +35,8 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     // to handle multiple same titles
     @Override
     public boolean removeDVD(DVD dvdToRemove) throws ClassDVDDaoException {
+        // reset dvdlibrary
+        dvdLibrary = new ArrayList<DVD>();
         // go through dvdLibrary to find dvd to remove
         loadDVD();
         for (int x = 0; x < dvdLibrary.size(); x++) {
@@ -46,6 +55,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     @Override
     public void editDVD(DVD dvdToEdit, DVD newDVD) throws ClassDVDDaoException {
         // Find DVD in library to be edited and change to newEditedDVD
+        dvdLibrary = new ArrayList<DVD>();
         loadDVD();
         for (int x = 0; x < dvdLibrary.size(); x++) {
             if (dvdLibrary.get(x).getTitle().equals(dvdToEdit.getTitle())) {
@@ -61,6 +71,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
     // return arraylist containing all current DVD's
     @Override
     public ArrayList<DVD> getAllDVDs() throws ClassDVDDaoException {
+        dvdLibrary = new ArrayList<DVD>();
         loadDVD();
         return dvdLibrary;
     }
@@ -164,7 +175,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao {
         return dvdText;
     }
 
-    //
+    // write current arraylist dvd library to DVD_LIBRARY file
     private void writeDVD() throws ClassDVDDaoException {
         PrintWriter out;
 
