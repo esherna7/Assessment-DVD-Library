@@ -111,7 +111,7 @@ public class DVDLibraryController {
 
     // retrieves DVD library from DVDLibraryDaoFileImpl
     // and View displays all DVDs in library
-    private void listDVDLibrary() {
+    private void listDVDLibrary() throws ClassDVDDaoException {
         view.displayDVDListBanner();
         ArrayList<DVD> dvdList = doa.getAllDVDs();
         view.displayDVDList(dvdList);
