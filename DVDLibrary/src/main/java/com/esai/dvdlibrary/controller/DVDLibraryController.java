@@ -63,17 +63,13 @@ public class DVDLibraryController {
                     case 7:
                         keepGoing = false;
                         break;
-                    default:
-                        io.print("Unknown Command");
                 }
             }
         }   // catches error loading library 
         catch (ClassDVDDaoException e) {
             view.displayErrorMessage(e.getMessage());
         }
-        
-        // user exited
-        io.print("Goodbye");
+        userExited();
     }
 
     // calls View to print out Menu and read user input selection
@@ -134,5 +130,10 @@ public class DVDLibraryController {
         else {
             view.displayDoesNotExistBanner();
         }
+    }
+    
+    // user exited program
+    private void userExited(){
+        view.userExited();
     }
 }

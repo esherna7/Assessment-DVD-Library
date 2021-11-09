@@ -185,4 +185,9 @@ public class DVDLibraryView {
         io.print("=== ERROR ===");
         io.print(errorMsg);
     }
+    
+    // print user exited program
+    public void userExited(){
+        io.print("Goodbye");
+    }
 }
